@@ -8,12 +8,14 @@ public class Plateau {
     private static final int TAILLE_TABLEAU = 10;
     private static final int LONGUEUR_LIGNE = 5;
     private int[][] grille;
+    private int[][] grilleSequences;
 
     /**
      * Crées un objet plateau
      */
     public Plateau() {
         this.grille = new int[TAILLE_TABLEAU][TAILLE_TABLEAU];
+        this.grilleSequences = new int[TAILLE_TABLEAU][TAILLE_TABLEAU];
     }
 
     /**
@@ -64,38 +66,41 @@ public class Plateau {
      * @param numeroJoueur numéro du joueur pour lequel verrifier les lignes
      * 
      */
-    public void rechercheSequences(int numeroJoueur) {
-        int[][] directions = {
-            {0, 1},  // Droite
-            {1, 0},  // Bas
-            {1, 1},  // Diagonale descendante
-            {1, -1}  // Diagonale montante
+    public void rechercheSequences(int xCase, int yCase, int numeroJoueur) {
+        int[][] directions = { 
+            { 1, 0 },
+            { 0, 1 }, 
+            { 1, 1 }, 
+            { 1, -1 } 
         };
 
-        for (int i = 0; i < TAILLE_TABLEAU; i++) {
-            for (int j = 0; j < TAILLE_TABLEAU; j++) {
-                for (int[] direction : directions) {
-                    int count = 0;
-                    for (int k = 0; k < LONGUEUR_LIGNE; k++) {
-                        int x = i + k * direction[0];
-                        int y = j + k * direction[1];
+        for (int[] direction : directions) { 
+            int compteur = 1; 
+            int x = xCase + direction[0];
+            int y = yCase + direction[1];
 
-                        if (x >= 0 && x < TAILLE_TABLEAU && y >= 0 && 
-                                y < TAILLE_TABLEAU && grille[x][y] == numeroJoueur) {
-                            count++;
-                        } else {
-                            break;
-                        }
-                    }
-                    if (count == LONGUEUR_LIGNE) {
-                        System.out.println("Séquence trouvée à partir de "
-                                + "(" + i + ", " + j + ") dans la direction "
-                                + "(" + direction[0] + ", " 
-                                + direction[1] + ") JOUEUR :" + numeroJoueur);
-                    }
-                }
+            while (x >= 0 && x < TAILLE_TABLEAU && y >= 0 && y < TAILLE_TABLEAU 
+                   && grille[x][y] == numeroJoueur && grilleSequences[x][y] == 0) {
+                compteur++;
+                x += direction[0];
+                y += direction[1];
+            }
+
+            x = xCase - direction[0];
+            y = yCase - direction[1];
+
+            while (x >= 0 && x < TAILLE_TABLEAU && y >= 0 && y < TAILLE_TABLEAU 
+                   && grille[x][y] == numeroJoueur && grilleSequences[x][y] == 0) {
+                compteur++;
+                x -= direction[0];
+                y -= direction[1];
+            }
+
+            if (compteur >= LONGUEUR_LIGNE) {
+                System.out.println("Ligne détectée à partir de la case (" + xCase + ", " + yCase + ")");
             }
         }
+        grilleSequences[xCase][yCase] = numeroJoueur;
     }
     
     
