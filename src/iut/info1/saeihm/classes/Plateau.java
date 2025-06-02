@@ -63,7 +63,9 @@ public class Plateau {
     }
     
     /**
-     * @param numeroJoueur numéro du joueur pour lequel verrifier les lignes
+     * @param xCase position x de la case sélectionnée
+     * @param yCase position y de la case sélectionnée
+     * @param numeroJoueur numéro du joueur pour lequel rechercher les sequences
      * 
      */
     public void rechercheSequences(int xCase, int yCase, int numeroJoueur) {
@@ -76,19 +78,18 @@ public class Plateau {
 
         for (int[] direction : directions) { 
             int compteur = 1; 
+            
             int x = xCase + direction[0];
             int y = yCase + direction[1];
-
             while (x >= 0 && x < TAILLE_TABLEAU && y >= 0 && y < TAILLE_TABLEAU 
                    && grille[x][y] == numeroJoueur && grilleSequences[x][y] == 0) {
                 compteur++;
                 x += direction[0];
                 y += direction[1];
             }
-
+            
             x = xCase - direction[0];
             y = yCase - direction[1];
-
             while (x >= 0 && x < TAILLE_TABLEAU && y >= 0 && y < TAILLE_TABLEAU 
                    && grille[x][y] == numeroJoueur && grilleSequences[x][y] == 0) {
                 compteur++;
