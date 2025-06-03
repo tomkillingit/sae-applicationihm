@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
@@ -16,14 +17,14 @@ public class Main extends Application {
     public static final char CODE_SCENE_SELECTION = 's';
     public static final char CODE_SCENE_JEU = 'j';
     public static final char CODE_SCENE_PARAMETRES = 'p';
-    
+
     private static Scene sceneAccueil;
     private static Scene sceneSelection;
     private static Scene sceneJeu;
     private static Scene sceneParametres;
-    
+
     private static Stage fenetrePrincipale;
-    
+
     /**
      * permet de basculer vers une scene en fonction
      * de son code
@@ -45,7 +46,7 @@ public class Main extends Application {
                 break;
         }
     }
-    
+
     public void start(Stage primaryStage) {
         try {
             fenetrePrincipale = primaryStage;
@@ -58,9 +59,9 @@ public class Main extends Application {
 
             AnchorPane vueJeu = FXMLLoader.load(getClass().getResource("VueJeu.fxml"));
             sceneJeu = new Scene(vueJeu, 818, 456);
-            
-            AnchorPane vueParametres = FXMLLoader.load(getClass().getResource("VueParametres.fxml"));
-            sceneJeu = new Scene(vueJeu, 818, 456);
+
+            HBox vueParametres = FXMLLoader.load(getClass().getResource("VueParametres.fxml"));
+            sceneParametres = new Scene(vueParametres, 818, 456);
 
             primaryStage.setScene(sceneAccueil);
             primaryStage.setTitle("Jeu des 5 croix");
@@ -70,7 +71,7 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-    
+
     /**
      * @param args non utilisé
      */
