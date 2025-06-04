@@ -1,6 +1,6 @@
 package iut.info1.saeihm;
 
-import java.awt.TextField;
+import javafx.scene.control.TextField;
 
 import iut.info1.saeihm.Main;
 import javafx.fxml.FXML;
@@ -22,7 +22,7 @@ public class ControlleurSelectionJoueur {
 
     @FXML
     private void suivant() {
-        //TODO verrifier si les labels des joueurs ne sont pas vides
+        //TODO verifier si les labels des joueurs ne sont pas vides
         Main.activerScene('j');
     }
 
