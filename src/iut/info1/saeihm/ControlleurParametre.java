@@ -35,10 +35,8 @@ public class ControlleurParametre {
      * Méthode appelée automatiquement après le chargement du fichier FXML.
      */
     @FXML
-    public void initialize() {
-        sauvegarde.setOnAction(event -> System.out.println("Sauvegarde effectuée !"));
-        emplacementSauvegarde.setOnAction(event -> System.out.println("Choix de l'emplacement..."));
-
+    public void initialize() {                
+       
         setupSingleChoiceMenu(choixPionJ1, "Pion Joueur 1");
         setupSingleChoiceMenu(choixPionJ2, "Pion Joueur 2");
         setupSingleChoiceMenu(choixCouleurJ1, "Couleur Joueur 1");
@@ -53,15 +51,18 @@ public class ControlleurParametre {
         for (MenuItem item : menuButton.getItems()) {
             item.setOnAction(e -> {
                 String selected = item.getText();
-                menuButton.setText(selected); // Met à jour le texte du bouton
+                menuButton.setText(selected); 
                 System.out.println(label + " sélectionné : " + selected);
             });
         }
     }
 
-    private static void clickRetour() {
+    /**
+     * 
+     */
+    public static void clickRetour() {
         try {
-            Main.activerScene('j'); // Active la scène du jeu
+            Main.activerScene('j'); 
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");

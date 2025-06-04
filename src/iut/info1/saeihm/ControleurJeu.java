@@ -50,7 +50,7 @@ public class ControleurJeu {
      */
     @FXML
     private void clickParametre() {
-        Main.activerScene('p'); // Utilise la constante pour activer la vue des paramètres
+        Main.activerScene('p'); 
     }
 
     /**
@@ -58,7 +58,7 @@ public class ControleurJeu {
      */
     @FXML
     private void clickMenu() {
-        Main.activerScene('a'); // Utilise la constante pour revenir au menu principal
+        Main.activerScene('a');
     }
 
     /**
