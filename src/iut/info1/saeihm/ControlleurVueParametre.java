@@ -9,7 +9,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
@@ -68,20 +67,16 @@ public class ControlleurVueParametre {
             });
         }
     }
-	private void clickRetour() {		
-		try {
-	            FXMLLoader loader = new FXMLLoader(getClass().getResource("VueJeu.fxml"));
-	            Parent root = loader.load();
-	            Stage stage = (Stage) retourParametre.getScene().getWindow();
-	            stage.setScene(new Scene(root));
-	            stage.show();
-	    } catch (IOException e) {
-	    	Alert alert = new Alert(Alert.AlertType.ERROR);
-	        alert.setTitle("Erreur");
-	        alert.setHeaderText("Retour au jeu Impossible");
-	        alert.setContentText(e.getMessage());
-	        alert.showAndWait();
-	    		
-		}
+	@FXML
+	private void clickRetour() {
+        try {
+        	Main.activerScene('j'); 
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Retour au jeu Impossible");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
 	}
 }
