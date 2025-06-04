@@ -16,7 +16,7 @@
       <Line endX="-100.0" endY="142.0" layoutX="521.0" layoutY="215.0" startX="-100.0" startY="-39.0" />
       <Line endX="-100.0" endY="142.0" layoutX="341.0" layoutY="33.0" startX="53.0" startY="142.0" />
       <Line endX="-100.0" endY="142.0" layoutX="549.0" layoutY="33.0" startX="53.0" startY="142.0" />
-      <Button id="lancerSelectionJoueur" layoutX="362.0" layoutY="383.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="119.0" text="Lancer" onAction="#suivant">
+      <Button fx:id="lancerSelectionJoueur" layoutX="362.0" layoutY="383.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="119.0" text="Lancer" onAction="#suivant">
          <font>
             <Font name="Consolas" size="12.0" />
          </font>
@@ -36,9 +36,9 @@
             <Font name="Consolas" size="20.0" />
          </font>
       </Text>
-      <TextField id="textFieldJ1" layoutX="241.0" layoutY="229.0" prefHeight="25.0" prefWidth="154.0" promptText="Entre 0 et 12 charactères..." />
-      <TextField id="textFieldJ2" layoutX="451.0" layoutY="229.0" prefWidth="149.0" promptText="Entre 0 et 12 charactères..." />
-      <Button id="retourSelectionJoueur" layoutX="746.0" layoutY="13.0" mnemonicParsing="false" text="Retour" onAction="#retour"/>
+      <TextField fx:id="textFieldJ1" layoutX="241.0" layoutY="229.0" prefHeight="25.0" prefWidth="154.0" promptText="Entre 0 et 12 charactères..." />
+      <TextField fx:id="textFieldJ2" layoutX="451.0" layoutY="229.0" prefWidth="149.0" promptText="Entre 0 et 12 charactères..." />
+      <Button fx:id="retourSelectionJoueur" layoutX="746.0" layoutY="13.0" mnemonicParsing="false" text="Retour" onAction="#retour"/>
       <Text layoutX="23.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Règles du jeu :" wrappingWidth="166.0">
          <font>
             <Font name="Consolas" size="19.0" />

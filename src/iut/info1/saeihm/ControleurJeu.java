@@ -33,9 +33,37 @@ public class ControleurJeu {
     @FXML
     private Button btnMenu;
 
-    private int joueurActuel = 1;
+    @FXML
+    private Label joueur1Label;
+
+    @FXML
+    private Label joueur2Label;
+
+    private String pseudoJoueur1 = "Joueur 1";
+    private String pseudoJoueur2 = "Joueur 2";
     
     private Plateau plateau = new Plateau();
+
+
+    /**
+     * TODO commenter le rôle de la méthode (SRP)
+     * @param pseudo
+     */
+    public void setPseudoJoueur1(String pseudo) {
+        this.pseudoJoueur1 = pseudo;
+        joueur1Label.setText(pseudo);
+    }
+
+    /**
+     * TODO commenter le rôle de la méthode (SRP)
+     * @param pseudo
+     */
+    public void setPseudoJoueur2(String pseudo) {
+        this.pseudoJoueur2 = pseudo;
+        joueur2Label.setText(pseudo);
+    }
+
+    private int joueurActuel = 1;
 
     /**
      * Méthode appelée automatiquement après le chargement du fichier FXML.
@@ -45,7 +73,7 @@ public class ControleurJeu {
         for (Node cellule : grille.getChildren()) {
             cellule.setOnMouseClicked(this::clickGrille);
         }
-        updateTour();
+        updateTour(); // Assurez-vous que le tour est mis à jour au démarrage
     }
 
     /**
@@ -143,12 +171,12 @@ public class ControleurJeu {
         setScoreJ2(scoreJoueur2);
     }
 
-
     /**
      * Met à jour le label du joueur dont c’est le tour.
      */
     private void updateTour() {
-        tour.setText("Au tour du Joueur " + joueurActuel);
+        String pseudoActuel = (joueurActuel == 1) ? pseudoJoueur1 : pseudoJoueur2;
+        tour.setText("Au tour de " + pseudoActuel);
     }
 
     /**
@@ -173,4 +201,18 @@ public class ControleurJeu {
     public void setScoreJ2(int score) {
         scoreJ2.setText(String.valueOf(score));
     }
-}
+    
+    /**
+     * TODO commenter le rôle de la méthode (SRP)
+     * @param nomJ1
+     * @param nomJ2
+     */
+    public void setNomsJoueurs(String nomJ1, String nomJ2) {
+        this.pseudoJoueur1 = nomJ1;
+        this.pseudoJoueur2 = nomJ2;
+        joueur1Label.setText(nomJ1);
+        joueur2Label.setText(nomJ2);
+        updateTour(); // Met à jour le label du tour avec les nouveaux pseudonymes
+    }
+
+    }
