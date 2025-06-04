@@ -58,7 +58,16 @@ public class ControleurJeu {
      */
     @FXML
     private void clickMenu() {
-        Main.activerScene('a');
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Règles du jeu");
+        alert.setHeaderText("Comment jouer ?");
+        alert.setContentText(
+            "Voici les règles du jeu :\n\n" +
+            "- Deux joueurs jouent chacun leur tour.\n" +
+            "- Cliquez sur une cellule de la grille pour y placer un pion.\n" +
+            "- Le but est de former une ligne, une colonne ou une diagonale de pions.\n" 
+        );
+        alert.showAndWait();
     }
 
     /**
