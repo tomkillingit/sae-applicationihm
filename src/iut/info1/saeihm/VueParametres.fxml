@@ -1,107 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="iut.info1.saeihm.ControlleurParametre">
-  <children>
-     <Pane prefHeight="400.0" prefWidth="659.0">
-        <children>
-           <Rectangle arcHeight="5.0" arcWidth="5.0" height="400.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
-           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d9d9d9" height="301.0" layoutX="69.0" layoutY="49.0" stroke="BLACK" strokeType="INSIDE" width="472.0" />
-           <Line endX="220.0" layoutX="320.0" layoutY="221.0" startX="-250.0" />
-           <Line endX="75.0" layoutX="288.0" layoutY="157.0" rotate="90.0" startX="-50.0" />
-           <Text layoutX="76.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Changer pion">
-              <font>
-                 <Font name="Consolas" size="12.0" />
-              </font>
-           </Text>
-           <MenuButton fx:id="choixPionJ1" layoutX="221.0" layoutY="148.0" mnemonicParsing="false" text="Pion">
-             <items>
-               <MenuItem mnemonicParsing="false" text="Round" />
-               <MenuItem mnemonicParsing="false" text="Carré" />
-                 <MenuItem mnemonicParsing="false" text="Triangle" />
-             </items>
-           </MenuButton>
-           <MenuButton fx:id="choixCouleurJ1" layoutX="221.0" layoutY="189.0" mnemonicParsing="false" text="Couleur">
-             <items>
-               <MenuItem mnemonicParsing="false" text="Rouge" />
-               <MenuItem mnemonicParsing="false" text="Bleu" />
-                 <MenuItem mnemonicParsing="false" text="Vert" />
-                 <MenuItem mnemonicParsing="false" text="Jaune" />
-             </items>
-           </MenuButton>
-           <MenuButton fx:id="choixPionJ2" layoutX="455.0" layoutY="148.0" mnemonicParsing="false" text="Pion">
-             <items>
-               <MenuItem mnemonicParsing="false" text="Round" />
-               <MenuItem mnemonicParsing="false" text="Triangle" />
-                 <MenuItem mnemonicParsing="false" text="Carré" />
-             </items>
-           </MenuButton>
-           <MenuButton fx:id="choixCouleurJ2" layoutX="456.0" layoutY="187.0" mnemonicParsing="false" text="Couleur">
-             <items>
-               <MenuItem mnemonicParsing="false" text="Rouge" />
-               <MenuItem mnemonicParsing="false" text="Bleu" />
-                 <MenuItem mnemonicParsing="false" text="Vert" />
-                 <MenuItem mnemonicParsing="false" text="Jaune" />
-             </items>
-           </MenuButton>
-           <MenuButton fx:id="choixCouleur" layoutX="461.0" layoutY="254.0" mnemonicParsing="false" text="Couleur">
-             <items>
-               <MenuItem mnemonicParsing="false" text="Rouge" />
-               <MenuItem mnemonicParsing="false" text="Bleu" />
-                 <MenuItem mnemonicParsing="false" text="Vert" />
-                 <MenuItem mnemonicParsing="false" text="Jaune" />
-             </items>
-           </MenuButton>
-           <MenuButton fx:id="choixImage" layoutX="466.0" layoutY="303.0" mnemonicParsing="false" text="Image">
-             <items>
-               <MenuItem mnemonicParsing="false" text="Image 1" />
-               <MenuItem mnemonicParsing="false" text="Image 2" />
-             </items>
-           </MenuButton>
-           <Button fx:id="emplacementSauvegarde" layoutX="90.0" layoutY="254.0" mnemonicParsing="false" text="Emplacement sauvegarde" />
-           <Button fx:id="sauvegarder" layoutX="90.0" layoutY="303.0" mnemonicParsing="false" text="Sauvegarder" />
-           <Text layoutX="76.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Changer couleur pion">
-              <font>
-                 <Font name="Consolas" size="12.0" />
-              </font>
-           </Text>
-           <Text layoutX="313.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Changer couleur pion">
-              <font>
-                 <Font name="Consolas" size="12.0" />
-              </font>
-           </Text>
-           <Text layoutX="313.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Changer pion">
-              <font>
-                 <Font name="Consolas" size="12.0" />
-              </font>
-           </Text>
-           <Text layoutX="270.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier le theme de couleur">
-              <font>
-                 <Font name="Consolas" size="12.0" />
-              </font>
-           </Text>
-           <Text layoutX="303.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Changer l'image de fond">
-              <font>
-                 <Font name="Consolas" size="12.0" />
-              </font>
-           </Text>
-           <Text layoutX="235.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Paramètres" wrappingWidth="130.833984375">
-              <font>
-                 <Font name="Consolas" size="23.0" />
-              </font>
-           </Text>
-           <Button fx:id="retourParametre" text="Retour" />
-           <Text layoutX="155.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur 1" />
-           <Text layoutX="392.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur 2" />
-        </children>
-     </Pane>
-  </children>
-</HBox>
 
+<AnchorPane fx:controller="iut.info1.saeihm.ControlleurVueParametre" prefHeight="456.0" prefWidth="812.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="466.0" stroke="BLACK" strokeType="INSIDE" width="822.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d9d9d9" height="301.0" layoutX="175.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="472.0" />
+      <Line endX="220.0" layoutX="425.0" layoutY="230.0" startX="-250.0" />
+      <Line endX="19.0" endY="72.0" layoutX="392.0" layoutY="157.0" startX="19.0" startY="-28.0" />
+      <Text layoutX="219.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Changer pion">
+         <font>
+            <Font name="Consolas" size="12.0" />
+         </font>
+      </Text>
+      <MenuButton fx:id="choixPionJ1" layoutX="325.0" layoutY="155.0" mnemonicParsing="false" text="Pion">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Round" />
+            <MenuItem mnemonicParsing="false" text="Carré" />
+            <MenuItem mnemonicParsing="false" text="Triangle" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="choixCouleurJ1" layoutX="325.0" layoutY="193.0" mnemonicParsing="false" text="Couleur">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Rouge" />
+            <MenuItem mnemonicParsing="false" text="Bleu" />
+            <MenuItem mnemonicParsing="false" text="Vert" />
+            <MenuItem mnemonicParsing="false" text="Jaune" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="choixPionJ2" layoutX="564.0" layoutY="155.0" mnemonicParsing="false" text="Pion">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Round" />
+            <MenuItem mnemonicParsing="false" text="Triangle" />
+            <MenuItem mnemonicParsing="false" text="Carré" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="choixCouleurJ2" layoutX="564.0" layoutY="193.0" mnemonicParsing="false" text="Couleur">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Rouge" />
+            <MenuItem mnemonicParsing="false" text="Bleu" />
+            <MenuItem mnemonicParsing="false" text="Vert" />
+            <MenuItem mnemonicParsing="false" text="Jaune" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="choixCouleur" layoutX="564.0" layoutY="264.0" mnemonicParsing="false" text="Couleur">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Rouge" />
+            <MenuItem mnemonicParsing="false" text="Bleu" />
+            <MenuItem mnemonicParsing="false" text="Vert" />
+            <MenuItem mnemonicParsing="false" text="Jaune" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="choixImage" layoutX="569.0" layoutY="313.0" mnemonicParsing="false" text="Image">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Image 1" />
+            <MenuItem mnemonicParsing="false" text="Image 2" />
+         </items>
+      </MenuButton>
+      <Button fx:id="emplacementSauvegarde" layoutX="183.0" layoutY="264.0" mnemonicParsing="false" text="Emplacement sauvegarde" />
+      <Button fx:id="sauvegarde" layoutX="217.0" layoutY="313.0" mnemonicParsing="false" text="Sauvegarde" />
+      <Text layoutX="182.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Changer couleur pion">
+         <font>
+            <Font name="Consolas" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="428.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Changer couleur pion">
+         <font>
+            <Font name="Consolas" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="454.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Changer pion">
+         <font>
+            <Font name="Consolas" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="372.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier le theme de couleur">
+         <font>
+            <Font name="Consolas" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="401.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Changer l'image de fond">
+         <font>
+            <Font name="Consolas" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="346.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Paramètres" wrappingWidth="130.833984375">
+         <font>
+            <Font name="Consolas" size="23.0" />
+         </font>
+      </Text>
+      <Button fx:id="retourParametre" layoutX="582.0" layoutY="91.0" mnemonicParsing="false" text="Retour" />
+      <Text layoutX="236.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur 1" />
+      <Text layoutX="528.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur 2" />
+   </children>
+</AnchorPane>
