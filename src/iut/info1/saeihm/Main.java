@@ -13,9 +13,13 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
+    /** TODO commenter le rôle : attribut, lien associatif */
     public static final char CODE_SCENE_ACCUEIL = 'a';
+    /** TODO commenter le rôle : attribut, lien associatif */
     public static final char CODE_SCENE_SELECTION = 's';
+    /** TODO commenter le rôle : attribut, lien associatif */
     public static final char CODE_SCENE_JEU = 'j';
+    /** TODO commenter le rôle : attribut, lien associatif */
     public static final char CODE_SCENE_PARAMETRES = 'p';
 
     private static Scene sceneAccueil;
@@ -60,11 +64,12 @@ public class Main extends Application {
             AnchorPane vueJeu = FXMLLoader.load(getClass().getResource("VueJeu.fxml"));
             sceneJeu = new Scene(vueJeu, 818, 456);
 
-            HBox vueParametres = FXMLLoader.load(getClass().getResource("VueParametres.fxml"));
+            AnchorPane vueParametres = FXMLLoader.load(getClass().getResource("VueParametres.fxml"));
             sceneParametres = new Scene(vueParametres, 818, 456);
 
             primaryStage.setScene(sceneAccueil);
             primaryStage.setTitle("Jeu des 5 croix");
+            primaryStage.setResizable(false);
             primaryStage.show();
 
         } catch (Exception e) {
