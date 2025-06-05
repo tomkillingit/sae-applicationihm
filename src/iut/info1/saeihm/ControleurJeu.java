@@ -93,10 +93,17 @@ public class ControleurJeu {
         alert.setTitle("Règles du jeu");
         alert.setHeaderText("Comment jouer ?");
         alert.setContentText(
-            "Voici les règles du jeu :\n\n" +
-            "- Deux joueurs jouent chacun leur tour.\n" +
-            "- Cliquez sur une cellule de la grille pour y placer un pion.\n" +
-            "- Le but est de former une ligne, une colonne ou une diagonale de pions.\n" 
+        		"Voici les règles du jeu :\n\n" 
+                + "- Le jeu se joue à deux sur une grille de 10x10 cases.\n"
+        		+ "- Chaque joueur place à tour de rôle un pion (croix ou rond) "
+        		+ "sur une case vide.\n"
+        		+ "- Le but est d’aligner 5 pions consécutifs horizontalement, "
+        		+ "verticalement ou en diagonale.\n"
+        		+ "- Chaque suite de 5 pions marque des points, même si elle "
+        		+ "touche une suite déjà existante, mais sans la "
+        		+ "recouvrir partiellement.\n"
+        		+ "- Le jeu se termine quand la grille est pleine.\n"
+        		+ "- Le gagnant est celui qui a le plus de suites de 5 pions.\n"
         );
         alert.showAndWait();
     }
