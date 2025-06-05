@@ -51,18 +51,31 @@ public class Main extends Application {
         }
     }
 
+    public static Scene getSceneJeu() {
+        return sceneJeu;
+    }
+
     public void start(Stage primaryStage) {
         try {
             fenetrePrincipale = primaryStage;
+
+           
+
+            // Associer le contrôleur à la scène
+            
 
             AnchorPane vueAccueil = FXMLLoader.load(getClass().getResource("VueAccueil.fxml"));
             sceneAccueil = new Scene(vueAccueil, 818, 456);
 
             AnchorPane vueSelection = FXMLLoader.load(getClass().getResource("VueSelectionJoueur.fxml"));
             sceneSelection = new Scene(vueSelection, 818, 456);
-
-            AnchorPane vueJeu = FXMLLoader.load(getClass().getResource("VueJeu.fxml"));
+            
+            FXMLLoader loaderJeu = new FXMLLoader(getClass().getResource("VueJeu.fxml"));
+            AnchorPane vueJeu = loaderJeu.load();
             sceneJeu = new Scene(vueJeu, 818, 456);
+            ControleurJeu controleurJeu = loaderJeu.getController();
+            sceneJeu.setUserData(controleurJeu);
+            
 
             AnchorPane vueParametres = FXMLLoader.load(getClass().getResource("VueParametres.fxml"));
             sceneParametres = new Scene(vueParametres, 818, 456);
