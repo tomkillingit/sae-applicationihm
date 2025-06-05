@@ -1,6 +1,8 @@
 
 package iut.info1.saeihm;
 
+import java.util.Random;
+
 import iut.info1.saeihm.classes.Plateau;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -42,6 +44,9 @@ public class ControleurJeu {
     private String pseudoJoueur1 = "Joueur 1";
     private String pseudoJoueur2 = "Joueur 2";
     
+    private String pionJoueur1;
+    private String pionJoueur2;
+    
     private Plateau plateau = new Plateau();
 
 
@@ -73,7 +78,20 @@ public class ControleurJeu {
         for (Node cellule : grille.getChildren()) {
             cellule.setOnMouseClicked(this::clickGrille);
         }
-        updateTour(); // Assurez-vous que le tour est mis à jour au démarrage
+        
+        Random random = new Random();
+
+        // Choisir aléatoirement le joueur qui commence
+        joueurActuel = random.nextBoolean() ? 1 : 2;
+
+        // Associer aléatoirement les types de pions
+        pionJoueur1 = random.nextBoolean() ? "X" : "O";
+        pionJoueur2 = pionJoueur1.equals("X") ? "O" : "X";
+
+        joueur1Label.setText(pseudoJoueur1 + " (" + pionJoueur1 + ")");
+        joueur2Label.setText(pseudoJoueur2 + " (" + pionJoueur2 + ")");
+
+        updateTour();
     }
 
     /**
@@ -113,24 +131,23 @@ public class ControleurJeu {
      */
     @FXML
     private void clickGrille(MouseEvent event) {
-        Node cellule = (Node) event.getSource();
-       
+    	Node cellule = (Node) event.getSource();
+
         if (cellule instanceof Button) {
             Button buttonCellule = (Button) cellule;
             Integer row = GridPane.getRowIndex(cellule);
             Integer col = GridPane.getColumnIndex(cellule);
-           
-            
-            if (plateau.getCase(row, col) == 0) { 
-                plateau.setCase(row, col, joueurActuel); 
-                buttonCellule.setText(joueurActuel == 1 ? "X" : "O");
+
+            if (plateau.getCase(row, col) == 0) {
+                plateau.setCase(row, col, joueurActuel);
+                buttonCellule.setText(joueurActuel == 1 ? pionJoueur1 : pionJoueur2);
                 buttonCellule.setStyle("-fx-font-size: 12px; -fx-alignment: center;");
                 if (plateau.rechercheSequences(row, col, joueurActuel)) {
                     comptabiliserPoints(joueurActuel);
-                }            
-             
+                }
+
                 changerJoueur();
-                updateTour(); 
+                updateTour();
             } else {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Action invalide");
