@@ -7,6 +7,7 @@ import iut.info1.saeihm.classes.Plateau;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.input.MouseEvent;
@@ -148,6 +149,7 @@ public class ControleurJeu {
 
                 changerJoueur();
                 updateTour();
+                verifierFinDePartie(); // Vérifie si la grille est pleine
             } else {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Action invalide");
@@ -237,6 +239,68 @@ public class ControleurJeu {
         joueur1Label.setText(nomJ1);
         joueur2Label.setText(nomJ2);
         updateTour(); // Met à jour le label du tour avec les nouveaux pseudonymes
+    }
+    
+    @FXML
+    private void verifierFinDePartie() {
+        boolean grillePleine = true;
+
+        for (int i = 0; i < plateau.getGrille().length; i++) {
+            for (int j = 0; j < plateau.getGrille()[i].length; j++) {
+                if (plateau.getCase(i, j) == 0) {
+                    grillePleine = false;
+                }
+            }
+        }
+
+        if (grillePleine) {
+            int scoreJoueur1 = Integer.parseInt(scoreJ1.getText());
+            int scoreJoueur2 = Integer.parseInt(scoreJ2.getText());
+            String messageFin;
+
+            if (scoreJoueur1 > scoreJoueur2) {
+                messageFin = "Le gagnant est " + pseudoJoueur1 + " avec un score de " + scoreJoueur1 + ".";
+            } else if (scoreJoueur2 > scoreJoueur1) {
+                messageFin = "Le gagnant est " + pseudoJoueur2 + " avec un score de " + scoreJoueur2 + ".";
+            } else {
+                messageFin = "Il y a égalité entre " + pseudoJoueur1 + " et " + pseudoJoueur2 + " avec un score de " + scoreJoueur1 + ".";
+            }
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Fin de la partie");
+            alert.setHeaderText("La grille est pleine !");
+            alert.setContentText(messageFin + "\nVoulez-vous rejouer ?");
+
+            ButtonType rejouer = new ButtonType("Rejouer");
+            ButtonType quitter = new ButtonType("Quitter");
+            alert.getButtonTypes().setAll(rejouer, quitter);
+
+            alert.showAndWait().ifPresent(response -> {
+                if (response == rejouer) {
+                    plateau.reset();
+                    resetScores();
+                    resetGrille();
+                } else {
+                    System.exit(0);
+                }
+            });
+        }
+    }
+
+    private void resetScores() {
+        setScoreJ1(0);
+        setScoreJ2(0);
+    }
+    
+    private void resetGrille() {
+        plateau.reset(); // Réinitialise les données de la grille
+        for (Node cellule : grille.getChildren()) {
+            if (cellule instanceof Button) {
+                Button buttonCellule = (Button) cellule;
+                buttonCellule.setText(""); // Efface le texte des boutons
+                buttonCellule.setStyle(""); // Réinitialise le style des boutons
+            }
+        }
     }
 
     }
