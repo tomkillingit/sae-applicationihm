@@ -169,6 +169,7 @@ public class ControleurJeu {
     private void comptabiliserPoints(int joueur) {
         int scoreJoueur1 = Integer.parseInt(scoreJ1.getText());
         int scoreJoueur2 = Integer.parseInt(scoreJ2.getText());
+        int pointsAjoutes = 0;
 
         for (Node cellule : grille.getChildren()) {
             if (cellule instanceof Button) {
@@ -176,27 +177,30 @@ public class ControleurJeu {
                 Integer row = GridPane.getRowIndex(cellule);
                 Integer col = GridPane.getColumnIndex(cellule);
 
-                if (joueur == plateau.getCase(row, col)) {
-                    switch (joueur) {
-                        case 1 -> {
-                            buttonCellule.setStyle("-fx-background-color: yellow;");
-                            scoreJoueur1 += 10;
+                // Vérifie si la case fait partie d'une séquence valide pour le joueur actuel
+                if (plateau.rechercheSequences(row, col, joueur)) {
+                    // Ajoute les points uniquement si la case n'a pas déjà été surlignée
+                    if (!buttonCellule.getStyle().contains("-fx-background-color")) {
+                        pointsAjoutes += 10; // Ajoute 10 points pour chaque alignement valide
+                        switch (joueur) {
+                            case 1 -> buttonCellule.setStyle("-fx-background-color: yellow;");
+                            case 2 -> buttonCellule.setStyle("-fx-background-color: green;");
                         }
-                        case 2 -> {
-                            buttonCellule.setStyle("-fx-background-color: green;");
-                            scoreJoueur2 += 10;
-                        }
-                        default -> buttonCellule.setStyle("");
                     }
                 }
             }
         }
 
-        // Mise à jour des scores affichés
-        setScoreJ1(scoreJoueur1);
-        setScoreJ2(scoreJoueur2);
-    }
+        // Ajoute les points uniquement après avoir parcouru toutes les cases
+        if (joueur == 1) {
+            scoreJoueur1 += pointsAjoutes;
+            setScoreJ1(scoreJoueur1);
+        } else {
+            scoreJoueur2 += pointsAjoutes;
+            setScoreJ2(scoreJoueur2);
+        }
 
+    }
     /**
      * Met à jour le label du joueur dont c’est le tour.
      */
