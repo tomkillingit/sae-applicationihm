@@ -9,9 +9,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
 import javafx.scene.layout.GridPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 
 /**
  * Contrôleur de la vue représentant la grille de jeu.
@@ -306,5 +308,45 @@ public class ControleurJeu {
             }
         }
     }
+
+	public Plateau getPlateau() {
+		// TODO Auto-generated method stub
+		return plateau;
+	}
+
+	public Label getScoreJ1() {
+		// TODO Auto-generated method stub
+		return scoreJ1;
+	}
+
+	public Labeled getScoreJ2() {
+		// TODO Auto-generated method stub
+		return scoreJ2;
+	}
+
+	public String getPseudoJoueur1() {
+		// TODO Auto-generated method stub
+		return pseudoJoueur1;
+	}
+
+	public String getPseudoJoueur2() {
+		// TODO Auto-generated method stub
+		return pseudoJoueur2;
+	}
+
+	public String getPionJoueur1() {
+		// TODO Auto-generated method stub
+		return pionJoueur1;
+	}
+
+	public String getPionJoueur2() {
+		// TODO Auto-generated method stub
+		return pionJoueur2;
+	}
+
+	public Parent getGrille() {
+		// TODO Auto-generated method stub
+		return grille;
+	}
 
     }

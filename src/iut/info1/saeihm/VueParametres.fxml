@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:controller="iut.info1.saeihm.ControlleurVueParametre" prefHeight="456.0" prefWidth="812.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="456.0" prefWidth="812.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iut.info1.saeihm.ControlleurParametre">
 
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="466.0" stroke="BLACK" strokeType="INSIDE" width="822.0" />
@@ -23,50 +23,50 @@
       </Text>
       <MenuButton fx:id="choixPionJ1" layoutX="325.0" layoutY="155.0" mnemonicParsing="false" text="Pion">
          <items>
-            <MenuItem mnemonicParsing="false" text="Round" />
-            <MenuItem mnemonicParsing="false" text="Carré" />
-            <MenuItem mnemonicParsing="false" text="Triangle" />
+            <MenuItem fx:id="RoundChoisiJ1" mnemonicParsing="false" text="Round" />
+            <MenuItem fx:id="CarreChoisiJ1" mnemonicParsing="false" text="Carré" />
+            <MenuItem fx:id="TriangleChoisiJ1" mnemonicParsing="false" text="Triangle" />
          </items>
       </MenuButton>
       <MenuButton fx:id="choixCouleurJ1" layoutX="325.0" layoutY="193.0" mnemonicParsing="false" text="Couleur">
          <items>
-            <MenuItem mnemonicParsing="false" text="Rouge" />
-            <MenuItem mnemonicParsing="false" text="Bleu" />
-            <MenuItem mnemonicParsing="false" text="Vert" />
-            <MenuItem mnemonicParsing="false" text="Jaune" />
+            <MenuItem fx:id="RougeChoisiJ1" mnemonicParsing="false" text="Rouge" />
+            <MenuItem fx:id="BleuChoisiJ1" mnemonicParsing="false" text="Bleu" />
+            <MenuItem fx:id="VertChoisiJ1" mnemonicParsing="false" text="Vert" />
+            <MenuItem fx:id="JauneChoisiJ" mnemonicParsing="false" text="Jaune" />
          </items>
       </MenuButton>
       <MenuButton fx:id="choixPionJ2" layoutX="564.0" layoutY="155.0" mnemonicParsing="false" text="Pion">
          <items>
-            <MenuItem mnemonicParsing="false" text="Round" />
-            <MenuItem mnemonicParsing="false" text="Triangle" />
-            <MenuItem mnemonicParsing="false" text="Carré" />
+            <MenuItem fx:id="RoundChoisiJ2" mnemonicParsing="false" text="Round" />
+            <MenuItem fx:id="TriangleChoisiJ2" mnemonicParsing="false" text="Triangle" />
+            <MenuItem fx:id="CarreChoisiJ2" mnemonicParsing="false" text="Carré" />
          </items>
       </MenuButton>
       <MenuButton fx:id="choixCouleurJ2" layoutX="564.0" layoutY="193.0" mnemonicParsing="false" text="Couleur">
          <items>
-            <MenuItem mnemonicParsing="false" text="Rouge" />
-            <MenuItem mnemonicParsing="false" text="Bleu" />
-            <MenuItem mnemonicParsing="false" text="Vert" />
-            <MenuItem mnemonicParsing="false" text="Jaune" />
+            <MenuItem fx:id="RougeChoisiJ2" mnemonicParsing="false" text="Rouge" />
+            <MenuItem fx:id="BleuChoisiJ2" mnemonicParsing="false" text="Bleu" />
+            <MenuItem fx:id="VertChoisiJ2" mnemonicParsing="false" text="Vert" />
+            <MenuItem fx:id="JauneChoisiJ2" mnemonicParsing="false" text="Jaune" />
          </items>
       </MenuButton>
       <MenuButton fx:id="choixCouleur" layoutX="564.0" layoutY="264.0" mnemonicParsing="false" text="Couleur">
          <items>
-            <MenuItem mnemonicParsing="false" text="Rouge" />
-            <MenuItem mnemonicParsing="false" text="Bleu" />
-            <MenuItem mnemonicParsing="false" text="Vert" />
-            <MenuItem mnemonicParsing="false" text="Jaune" />
+            <MenuItem fx:id="RougeChoisiFond" mnemonicParsing="false" text="Rouge" />
+            <MenuItem fx:id="BleuChoisiFond" mnemonicParsing="false" text="Bleu" />
+            <MenuItem fx:id="VertChoisiFond" mnemonicParsing="false" text="Vert" />
+            <MenuItem fx:id="JauneChoisiFond" mnemonicParsing="false" text="Jaune" />
          </items>
       </MenuButton>
       <MenuButton fx:id="choixImage" layoutX="569.0" layoutY="313.0" mnemonicParsing="false" text="Image">
          <items>
-            <MenuItem mnemonicParsing="false" text="Image 1" />
-            <MenuItem mnemonicParsing="false" text="Image 2" />
+            <MenuItem fx:id="Image1Choisi" mnemonicParsing="false" text="Image 1" />
+            <MenuItem fx:id="Image2Choisi" mnemonicParsing="false" text="Image 2" />
          </items>
       </MenuButton>
       <Button fx:id="emplacementSauvegarde" layoutX="183.0" layoutY="264.0" mnemonicParsing="false" text="Emplacement sauvegarde" />
-      <Button fx:id="sauvegarde" layoutX="217.0" layoutY="313.0" mnemonicParsing="false" text="Sauvegarde" />
+      <Button fx:id="sauvegarde" layoutX="217.0" layoutY="313.0" mnemonicParsing="false" text="Sauvegarde" onAction="#clickSauvegarder"/>
       <Text layoutX="182.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Changer couleur pion">
          <font>
             <Font name="Consolas" size="12.0" />

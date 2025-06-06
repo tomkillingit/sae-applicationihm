@@ -39,10 +39,11 @@ public class Plateau {
             if (i < 0 || i >= TAILLE_TABLEAU || j < 0 || j >= TAILLE_TABLEAU) {
                 throw new ArrayIndexOutOfBoundsException("Index invalide");
             }
+            grille[i][j] = valeur;
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println(e.getMessage());
         }
-        grille[i][j] = valeur;
+        
     }
 
     /**
@@ -70,84 +71,43 @@ public class Plateau {
      * @return true si une séquence a été détectée, false sinon
      */
 
-    public boolean rechercheSequences(int row, int col, int joueur) {
+    public boolean rechercheSequences(int xCase, int yCase, int numeroJoueur) {
         int[][] directions = {
-            {0, 1},  // Horizontal
-            {1, 0},  // Vertical
-            {1, 1},  // Diagonale descendante
-            {-1, 1}  // Diagonale montante
+            { 1, 0 },
+            { 0, 1 }, 
+            { 1, 1 },
+            { 1, -1 }  
         };
-
+    
         for (int[] direction : directions) {
-            int count = 1;
+            int compteur = 1;
+            int x = xCase + direction[0];
+            int y = yCase + direction[1];
+            while (x >= 0 && x < TAILLE_TABLEAU && y >= 0 && y < TAILLE_TABLEAU
+                   && grille[x][y] == numeroJoueur) {
+                compteur++;
+                x += direction[0];
+                y += direction[1];
+            }
+            x = xCase - direction[0];
+            y = yCase - direction[1];
+            while (x >= 0 && x < TAILLE_TABLEAU && y >= 0 && y < TAILLE_TABLEAU
+                   && grille[x][y] == numeroJoueur) {
+                compteur++;
 
-            // Vérifier dans une direction
-            count += compterAlignement(row, col, direction[0], direction[1], joueur);
-
-            // Vérifier dans la direction opposée
-            count += compterAlignement(row, col, -direction[0], -direction[1], joueur);
-
-            // Si exactement 5 pions sont alignés
-            if (count == LONGUEUR_LIGNE) {
+                x -= direction[0];
+                y -= direction[1];
+            }
+    
+            if (compteur == LONGUEUR_LIGNE) {
+                System.out.println("Ligne détectée à partir de la case (" + xCase + ", " + yCase + ")");
+                grillePrecedente = grille;
                 return true;
             }
         }
-
+        grillePrecedente = grille;
         return false;
     }
-
-       
-
-    private int compterAlignement(int row, int col, int dRow, int dCol, int joueur) {
-        int count = 0;
-
-        for (int i = 1; i <= LONGUEUR_LIGNE; i++) { // Limite à 5 cases
-            int newRow = row + i * dRow;
-            int newCol = col + i * dCol;
-
-            if (newRow < 0 || newRow >= grille.length || newCol < 0 || newCol >= grille[0].length) {
-                break; // Hors limites
-            }
-
-            if (grille[newRow][newCol] == joueur) {
-                count++;
-            } else {
-                break; // Arrête si la case n'appartient pas au joueur
-            }
-        }
-
-        return count;
-    }
-
-       
-    
-    public boolean estSequenceValide(int row, int col, int joueur) {
-        int[][] directions = {
-            {0, 1},  // Horizontal
-            {1, 0},  // Vertical
-            {1, 1},  // Diagonale descendante
-            {-1, 1}  // Diagonale montante
-        };
-
-        for (int[] direction : directions) {
-            int count = 1;
-
-            // Vérifier dans une direction
-            count += compterAlignement(row, col, direction[0], direction[1], joueur);
-
-            // Vérifier dans la direction opposée
-            count += compterAlignement(row, col, -direction[0], -direction[1], joueur);
-
-            // Si exactement 5 pions sont alignés
-            if (count == LONGUEUR_LIGNE) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-    
-    
 
 
     @Override
