@@ -1,5 +1,8 @@
 
-
+/**
+ * Fichier contenant le contrôleur des paramètres du jeu.
+ * Gère les interactions liées aux paramètres et la sauvegarde de la partie.
+ */
 
 package iut.info1.saeihm;
 
@@ -23,30 +26,30 @@ import javafx.scene.control.MenuItem;
 public class ControlleurParametre {
 
     @FXML
-    private MenuButton choixPionJ1;
+    private MenuButton choixPionJ1; // Menu pour choisir le pion du joueur 1
     @FXML
-    private MenuButton choixPionJ2;
+    private MenuButton choixPionJ2; // Menu pour choisir le pion du joueur 2
     @FXML
-    private MenuButton choixCouleurJ1;
+    private MenuButton choixCouleurJ1; // Menu pour choisir la couleur du joueur 1
     @FXML
-    private MenuButton choixCouleurJ2;
+    private MenuButton choixCouleurJ2; // Menu pour choisir la couleur du joueur 2
     @FXML
-    private MenuButton choixCouleur;
+    private MenuButton choixCouleur; // Menu pour choisir le thème de couleur
     @FXML
-    private MenuButton choixImage;
+    private MenuButton choixImage; // Menu pour choisir l'image de fond
     @FXML
-    private Button emplacementSauvegarde;
+    private Button emplacementSauvegarde; // Bouton pour définir l'emplacement de sauvegarde
     @FXML
-    private Button sauvegarde;
+    private Button sauvegarde; // Bouton pour sauvegarder la partie
     @FXML
-    private Button retourParametre;
+    private Button retourParametre; // Bouton pour retourner au jeu
 
     /**
      * Méthode appelée automatiquement après le chargement du fichier FXML.
+     * Initialise les menus et les actions des boutons.
      */
     @FXML
     public void initialize() {                
-       
         setupSingleChoiceMenu(choixPionJ1, "Pion Joueur 1");
         setupSingleChoiceMenu(choixPionJ2, "Pion Joueur 2");
         setupSingleChoiceMenu(choixCouleurJ1, "Couleur Joueur 1");
@@ -57,6 +60,11 @@ public class ControlleurParametre {
         retourParametre.setOnAction(event -> clickRetour());
     }
 
+    /**
+     * Configure un menu pour permettre une sélection unique.
+     * @param menuButton Le menu à configurer
+     * @param label Le label associé au menu
+     */
     private static void setupSingleChoiceMenu(MenuButton menuButton, String label) {
         for (MenuItem item : menuButton.getItems()) {
             item.setOnAction(e -> {
@@ -68,7 +76,7 @@ public class ControlleurParametre {
     }
 
     /**
-     * 
+     * Retourne à la scène du jeu.
      */
     public static void clickRetour() {
         try {
@@ -81,7 +89,10 @@ public class ControlleurParametre {
             alert.showAndWait();
         }
     }
-    
+
+    /**
+     * Affiche une confirmation avant de sauvegarder la partie.
+     */
     @FXML
     private void clickSauvegarder() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -100,6 +111,9 @@ public class ControlleurParametre {
         });
     }
 
+    /**
+     * Sauvegarde la partie en cours dans un fichier.
+     */
     private void sauvegarderPartie() {
         try {
             // Récupération du contrôleur de la scène du jeu
@@ -140,4 +154,3 @@ public class ControlleurParametre {
         }
     }
 }
-	

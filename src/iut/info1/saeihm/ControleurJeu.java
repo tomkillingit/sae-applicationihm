@@ -9,7 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.Labeled;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.Node;
@@ -17,45 +17,50 @@ import javafx.scene.Parent;
 
 /**
  * Contrôleur de la vue représentant la grille de jeu.
+ * Gère les interactions entre les joueurs et la grille.
  */
 public class ControleurJeu {
 
     @FXML
-    private Label scoreJ1;
+    private Label scoreJ1; // Label affichant le score du joueur 1
 
     @FXML
-    private Label scoreJ2;
+    private Label scoreJ2; // Label affichant le score du joueur 2
 
     @FXML
-    private Label tour;
+    private Label tour; // Label indiquant le joueur dont c'est le tour
 
     @FXML
-    private GridPane grille;
+    private GridPane grille; // Grille de jeu
 
     @FXML
-    private Button btnParam;
+    private Button btnParam; // Bouton pour accéder aux paramètres
 
     @FXML
-    private Button btnMenu;
+    private Button btnMenu; // Bouton pour afficher les règles du jeu
 
     @FXML
-    private Label joueur1Label;
+    private Label joueur1Label; // Label affichant le pseudo du joueur 1
 
     @FXML
-    private Label joueur2Label;
+    private Label joueur2Label; // Label affichant le pseudo du joueur 2
 
-    private String pseudoJoueur1 = "Joueur 1";
-    private String pseudoJoueur2 = "Joueur 2";
-    
-    private String pionJoueur1;
-    private String pionJoueur2;
-    
-    private Plateau plateau = new Plateau();
+    private String pseudoJoueur1 = "Joueur 1"; // Pseudo par défaut du joueur 1
+    private String pseudoJoueur2 = "Joueur 2"; // Pseudo par défaut du joueur 2
 
+    private String pionJoueur1; // Symbole du joueur 1 (X ou O)
+    private String pionJoueur2; // Symbole du joueur 2 (X ou O)
+
+    private Plateau plateau = new Plateau(); // Plateau de jeu
+
+    @FXML
+    private AnchorPane root; // Racine de la vue
+
+    private int joueurActuel = 1; // Indique le joueur dont c'est le tour (1 ou 2)
 
     /**
-     * TODO commenter le rôle de la méthode (SRP)
-     * @param pseudo
+     * Définit le pseudo du joueur 1 et met à jour l'affichage.
+     * @param pseudo Pseudo du joueur 1
      */
     public void setPseudoJoueur1(String pseudo) {
         this.pseudoJoueur1 = pseudo;
@@ -63,25 +68,24 @@ public class ControleurJeu {
     }
 
     /**
-     * TODO commenter le rôle de la méthode (SRP)
-     * @param pseudo
+     * Définit le pseudo du joueur 2 et met à jour l'affichage.
+     * @param pseudo Pseudo du joueur 2
      */
     public void setPseudoJoueur2(String pseudo) {
         this.pseudoJoueur2 = pseudo;
         joueur2Label.setText(pseudo);
     }
 
-    private int joueurActuel = 1;
-
     /**
      * Méthode appelée automatiquement après le chargement du fichier FXML.
+     * Initialise les événements et les paramètres du jeu.
      */
     @FXML
     private void initialize() {
         for (Node cellule : grille.getChildren()) {
             cellule.setOnMouseClicked(this::clickGrille);
         }
-        
+
         Random random = new Random();
 
         // Choisir aléatoirement le joueur qui commence
@@ -99,6 +103,7 @@ public class ControleurJeu {
 
     /**
      * Méthode appelée lors d’un clic sur le bouton Paramètres.
+     * Change la scène pour afficher les paramètres.
      */
     @FXML
     private void clickParametre() {
@@ -107,6 +112,7 @@ public class ControleurJeu {
 
     /**
      * Méthode appelée lors d’un clic sur le bouton Menu.
+     * Affiche les règles du jeu dans une boîte de dialogue.
      */
     @FXML
     private void clickMenu() {
@@ -114,27 +120,29 @@ public class ControleurJeu {
         alert.setTitle("Règles du jeu");
         alert.setHeaderText("Comment jouer ?");
         alert.setContentText(
-        		"Voici les règles du jeu :\n\n" 
-                + "- Le jeu se joue à deux sur une grille de 10x10 cases.\n"
-        		+ "- Chaque joueur place à tour de rôle un pion (croix ou rond) "
-        		+ "sur une case vide.\n"
-        		+ "- Le but est d’aligner 5 pions consécutifs horizontalement, "
-        		+ "verticalement ou en diagonale.\n"
-        		+ "- Chaque suite de 5 pions marque des points, même si elle "
-        		+ "touche une suite déjà existante, mais sans la "
-        		+ "recouvrir partiellement.\n"
-        		+ "- Le jeu se termine quand la grille est pleine.\n"
-        		+ "- Le gagnant est celui qui a le plus de suites de 5 pions.\n"
+            "Voici les règles du jeu :\n\n" 
+            + "- Le jeu se joue à deux sur une grille de 10x10 cases.\n"
+            + "- Chaque joueur place à tour de rôle un pion (croix ou rond) "
+            + "sur une case vide.\n"
+            + "- Le but est d’aligner 5 pions consécutifs horizontalement, "
+            + "verticalement ou en diagonale.\n"
+            + "- Chaque suite de 5 pions marque des points, même si elle "
+            + "touche une suite déjà existante, mais sans la "
+            + "recouvrir partiellement.\n"
+            + "- Le jeu se termine quand la grille est pleine.\n"
+            + "- Le gagnant est celui qui a le plus de suites de 5 pions.\n"
         );
         alert.showAndWait();
     }
 
     /**
      * Méthode appelée lorsqu'une cellule de la grille est cliquée.
+     * Gère le placement des pions et vérifie les alignements.
+     * @param event Événement de clic
      */
     @FXML
     private void clickGrille(MouseEvent event) {
-    	Node cellule = (Node) event.getSource();
+        Node cellule = (Node) event.getSource();
 
         if (cellule instanceof Button) {
             Button buttonCellule = (Button) cellule;
@@ -161,11 +169,11 @@ public class ControleurJeu {
             }
         }
     }
-    
+
     /**
-     * Parcourt tout le tableau et surligne les cases :
-     * - en jaune si elles contiennent 1
-     * - en vert si elles contiennent 2
+     * Parcourt tout le tableau et surligne les cases alignées.
+     * Ajoute des points au joueur correspondant.
+     * @param joueur Numéro du joueur (1 ou 2)
      */
     @FXML
     private void comptabiliserPoints(int joueur) {
@@ -179,8 +187,8 @@ public class ControleurJeu {
                 Integer row = GridPane.getRowIndex(cellule);
                 Integer col = GridPane.getColumnIndex(cellule);
 
-                // Vérifie si la case fait partie d'une séquence valide pour le joueur actuel
-                if (plateau.rechercheSequences(row, col, joueur)) {
+                // Vérifie si la case appartient au joueur actuel
+                if (plateau.getCase(row, col) == joueur && plateau.rechercheSequences(row, col, joueur)) {
                     // Ajoute les points uniquement si la case n'a pas déjà été surlignée
                     if (!buttonCellule.getStyle().contains("-fx-background-color")) {
                         pointsAjoutes += 10; // Ajoute 10 points pour chaque alignement valide
@@ -201,8 +209,8 @@ public class ControleurJeu {
             scoreJoueur2 += pointsAjoutes;
             setScoreJ2(scoreJoueur2);
         }
-
     }
+
     /**
      * Met à jour le label du joueur dont c’est le tour.
      */
@@ -220,7 +228,7 @@ public class ControleurJeu {
 
     /**
      * Met à jour le score du joueur 1.
-     * @param score
+     * @param score Nouveau score du joueur 1
      */
     public void setScoreJ1(int score) {
         scoreJ1.setText(String.valueOf(score));
@@ -228,16 +236,16 @@ public class ControleurJeu {
 
     /**
      * Met à jour le score du joueur 2.
-     * @param score
+     * @param score Nouveau score du joueur 2
      */
     public void setScoreJ2(int score) {
         scoreJ2.setText(String.valueOf(score));
     }
-    
+
     /**
-     * TODO commenter le rôle de la méthode (SRP)
-     * @param nomJ1
-     * @param nomJ2
+     * Définit les noms des joueurs et met à jour l'affichage.
+     * @param nomJ1 Pseudo du joueur 1
+     * @param nomJ2 Pseudo du joueur 2
      */
     public void setNomsJoueurs(String nomJ1, String nomJ2) {
         this.pseudoJoueur1 = nomJ1;
@@ -246,7 +254,10 @@ public class ControleurJeu {
         joueur2Label.setText(nomJ2);
         updateTour(); // Met à jour le label du tour avec les nouveaux pseudonymes
     }
-    
+
+    /**
+     * Vérifie si la grille est pleine et affiche le résultat de la partie.
+     */
     @FXML
     private void verifierFinDePartie() {
         boolean grillePleine = true;
@@ -293,11 +304,17 @@ public class ControleurJeu {
         }
     }
 
+    /**
+     * Réinitialise les scores des joueurs.
+     */
     private void resetScores() {
         setScoreJ1(0);
         setScoreJ2(0);
     }
-    
+
+    /**
+     * Réinitialise la grille de jeu.
+     */
     private void resetGrille() {
         plateau.reset(); // Réinitialise les données de la grille
         for (Node cellule : grille.getChildren()) {
@@ -309,44 +326,67 @@ public class ControleurJeu {
         }
     }
 
-	public Plateau getPlateau() {
-		// TODO Auto-generated method stub
-		return plateau;
-	}
-
-	public Label getScoreJ1() {
-		// TODO Auto-generated method stub
-		return scoreJ1;
-	}
-
-	public Labeled getScoreJ2() {
-		// TODO Auto-generated method stub
-		return scoreJ2;
-	}
-
-	public String getPseudoJoueur1() {
-		// TODO Auto-generated method stub
-		return pseudoJoueur1;
-	}
-
-	public String getPseudoJoueur2() {
-		// TODO Auto-generated method stub
-		return pseudoJoueur2;
-	}
-
-	public String getPionJoueur1() {
-		// TODO Auto-generated method stub
-		return pionJoueur1;
-	}
-
-	public String getPionJoueur2() {
-		// TODO Auto-generated method stub
-		return pionJoueur2;
-	}
-
-	public Parent getGrille() {
-		// TODO Auto-generated method stub
-		return grille;
-	}
-
+    /**
+     * Retourne le plateau de jeu.
+     * @return Plateau de jeu
+     */
+    public Plateau getPlateau() {
+        return plateau;
     }
+
+    /**
+     * Retourne le label du score du joueur 1.
+     * @return Label du score du joueur 1
+     */
+    public Label getScoreJ1() {
+        return scoreJ1;
+    }
+
+    /**
+     * Retourne le label du score du joueur 2.
+     * @return Label du score du joueur 2
+     */
+    public Label getScoreJ2() {
+        return scoreJ2;
+    }
+
+    /**
+     * Retourne le pseudo du joueur 1.
+     * @return Pseudo du joueur 1
+     */
+    public String getPseudoJoueur1() {
+        return pseudoJoueur1;
+    }
+
+    /**
+     * Retourne le pseudo du joueur 2.
+     * @return Pseudo du joueur 2
+     */
+    public String getPseudoJoueur2() {
+        return pseudoJoueur2;
+    }
+
+    /**
+     * Retourne le symbole du joueur 1.
+     * @return Symbole du joueur 1
+     */
+    public String getPionJoueur1() {
+        return pionJoueur1;
+    }
+
+    /**
+     * Retourne le symbole du joueur 2.
+     * @return Symbole du joueur 2
+     */
+    public String getPionJoueur2() {
+        return pionJoueur2;
+    }
+
+    /**
+     * Retourne la grille de jeu.
+     * @return Grille de jeu
+     */
+    public Parent getGrille() {
+        return grille;
+    }
+}

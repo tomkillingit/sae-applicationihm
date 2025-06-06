@@ -1,38 +1,43 @@
+
+/**
+ * Fichier contenant la classe principale de l'application.
+ * Gère le lancement de l'application et la navigation entre les différentes scènes.
+ */
+
 package iut.info1.saeihm;
 
+import iut.info1.saeihm.ControleurJeu;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
- * classe principale de l'application jeu des 5 croix
- * @author TP4
+ * Classe principale de l'application jeu des 5 croix.
+ * Initialise les scènes et permet de basculer entre elles.
  */
 public class Main extends Application {
 
-    /** TODO commenter le rôle : attribut, lien associatif */
+    /** Code de la scène d'accueil. */
     public static final char CODE_SCENE_ACCUEIL = 'a';
-    /** TODO commenter le rôle : attribut, lien associatif */
+    /** Code de la scène de sélection des joueurs. */
     public static final char CODE_SCENE_SELECTION = 's';
-    /** TODO commenter le rôle : attribut, lien associatif */
+    /** Code de la scène du jeu. */
     public static final char CODE_SCENE_JEU = 'j';
-    /** TODO commenter le rôle : attribut, lien associatif */
+    /** Code de la scène des paramètres. */
     public static final char CODE_SCENE_PARAMETRES = 'p';
 
-    private static Scene sceneAccueil;
-    private static Scene sceneSelection;
-    private static Scene sceneJeu;
-    private static Scene sceneParametres;
+    private static Scene sceneAccueil; // Scène d'accueil
+    private static Scene sceneSelection; // Scène de sélection des joueurs
+    private static Scene sceneJeu; // Scène du jeu
+    private static Scene sceneParametres; // Scène des paramètres
 
-    private static Stage fenetrePrincipale;
+    private static Stage fenetrePrincipale; // Fenêtre principale de l'application
 
     /**
-     * permet de basculer vers une scene en fonction
-     * de son code
-     * @param codeScene code de la scene vers laquelle basculer
+     * Permet de basculer vers une scène en fonction de son code.
+     * @param codeScene Code de la scène vers laquelle basculer
      */
     public static void activerScene(char codeScene) {
         switch (codeScene) {
@@ -51,35 +56,39 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Retourne la scène du jeu.
+     * @return Scène du jeu
+     */
     public static Scene getSceneJeu() {
         return sceneJeu;
     }
 
+    /**
+     * Méthode principale de démarrage de l'application.
+     * @param primaryStage Fenêtre principale
+     */
     public void start(Stage primaryStage) {
         try {
             fenetrePrincipale = primaryStage;
 
-           
-
-            // Associer le contrôleur à la scène
-            
-
-            AnchorPane vueAccueil = FXMLLoader.load(getClass().getResource("VueAccueil.fxml"));
+            // Chargement des scènes
+            AnchorPane vueAccueil = FXMLLoader.load(getClass().getResource("/iut/info1/saeihm/VueAccueil.fxml"));
             sceneAccueil = new Scene(vueAccueil, 818, 456);
 
-            AnchorPane vueSelection = FXMLLoader.load(getClass().getResource("VueSelectionJoueur.fxml"));
+            AnchorPane vueSelection = FXMLLoader.load(getClass().getResource("/iut/info1/saeihm/VueSelectionJoueur.fxml"));
             sceneSelection = new Scene(vueSelection, 818, 456);
-            
-            FXMLLoader loaderJeu = new FXMLLoader(getClass().getResource("VueJeu.fxml"));
+
+            FXMLLoader loaderJeu = new FXMLLoader(getClass().getResource("/iut/info1/saeihm/VueJeu.fxml"));
             AnchorPane vueJeu = loaderJeu.load();
             sceneJeu = new Scene(vueJeu, 818, 456);
             ControleurJeu controleurJeu = loaderJeu.getController();
             sceneJeu.setUserData(controleurJeu);
-            
 
-            AnchorPane vueParametres = FXMLLoader.load(getClass().getResource("VueParametres.fxml"));
+            AnchorPane vueParametres = FXMLLoader.load(getClass().getResource("/iut/info1/saeihm/VueParametres.fxml"));
             sceneParametres = new Scene(vueParametres, 818, 456);
 
+            // Configuration de la fenêtre principale
             primaryStage.setScene(sceneAccueil);
             primaryStage.setTitle("Jeu des 5 croix");
             primaryStage.setResizable(false);
@@ -91,7 +100,8 @@ public class Main extends Application {
     }
 
     /**
-     * @param args non utilisé
+     * Méthode principale de l'application.
+     * @param args Arguments non utilisés
      */
     public static void main(String[] args) {
         launch(args);

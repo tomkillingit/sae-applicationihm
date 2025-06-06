@@ -8,15 +8,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:controller="iut.info1.saeihm.ControlleurSelectionJoueur" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="812.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="812.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iut.info1.saeihm.ControlleurSelectionJoueur">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="456.0" layoutX="-3.0" stroke="BLACK" strokeType="INSIDE" width="818.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="425.0" layoutX="14.0" layoutY="16.0" stroke="WHITE" strokeType="INSIDE" width="175.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d3d3" height="265.0" layoutX="213.0" layoutY="96.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" width="416.0" />
       <Line endX="-100.0" endY="142.0" layoutX="521.0" layoutY="215.0" startX="-100.0" startY="-39.0" />
       <Line endX="-100.0" endY="142.0" layoutX="341.0" layoutY="33.0" startX="53.0" startY="142.0" />
       <Line endX="-100.0" endY="142.0" layoutX="549.0" layoutY="33.0" startX="53.0" startY="142.0" />
-      <Button fx:id="lancerSelectionJoueur" layoutX="362.0" layoutY="383.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="119.0" text="Lancer" onAction="#suivant">
+      <Button fx:id="lancerSelectionJoueur" layoutX="362.0" layoutY="383.0" mnemonicParsing="false" onAction="#suivant" prefHeight="43.0" prefWidth="119.0" text="Lancer">
          <font>
             <Font name="Consolas" size="12.0" />
          </font>
@@ -38,7 +37,7 @@
       </Text>
       <TextField fx:id="textFieldJ1" layoutX="241.0" layoutY="229.0" prefHeight="25.0" prefWidth="154.0" promptText="Entre 0 et 12 charactères..." />
       <TextField fx:id="textFieldJ2" layoutX="451.0" layoutY="229.0" prefWidth="149.0" promptText="Entre 0 et 12 charactères..." />
-      <Button fx:id="retourSelectionJoueur" layoutX="746.0" layoutY="13.0" mnemonicParsing="false" text="Retour" onAction="#retour"/>
+      <Button fx:id="retourSelectionJoueur" layoutX="746.0" layoutY="13.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
       <Text layoutX="23.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Règles du jeu :" wrappingWidth="166.0">
          <font>
             <Font name="Consolas" size="19.0" />

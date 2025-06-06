@@ -15,21 +15,30 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 
 /**
- * 
+ * Contrôleur de la vue d'accueil.
+ * Gère les interactions pour démarrer ou charger une partie.
  */
 public class ControlleurAccueil {
 
     @FXML
-    private Button changerDePartieButton;
+    private Button changerDePartieButton; // Bouton pour changer de partie
 
     @FXML
-    private Button nouvellePartieButton;
+    private Button nouvellePartieButton; // Bouton pour démarrer une nouvelle partie
 
+    /**
+     * Méthode appelée automatiquement après le chargement du fichier FXML.
+     * Initialise le contrôleur.
+     */
     @FXML
     private void initialize() {
         System.out.println("Contrôleur Accueil initialisé.");
     }
 
+    /**
+     * Charge une partie sauvegardée depuis un fichier.
+     * Met à jour le plateau, les scores et les pseudonymes.
+     */
     @FXML
     private void chargerUnePartie() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("partie.sav"))) {
@@ -105,10 +114,12 @@ public class ControlleurAccueil {
             alert.showAndWait();
         }
     }
-    
+
+    /**
+     * Démarre une nouvelle partie en basculant vers la scène de sélection.
+     */
     @FXML
     private void nouvellePartie() {
         Main.activerScene('s');
     }
 }
-

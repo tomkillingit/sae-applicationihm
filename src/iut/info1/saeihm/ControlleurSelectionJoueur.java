@@ -1,3 +1,9 @@
+
+/**
+ * Fichier contenant le contrôleur de la sélection des joueurs.
+ * Gère les interactions pour définir les pseudonymes des joueurs et naviguer entre les scènes.
+ */
+
 package iut.info1.saeihm;
 
 import javafx.scene.control.TextField;
@@ -15,19 +21,22 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 
 /**
- * Permet le lien entre la page sélection joueur et les autres classes
+ * Contrôleur de la vue de sélection des joueurs.
  */
 public class ControlleurSelectionJoueur {
 
     @FXML
-    private Button lancerSelectionJoueur;
+    private Button lancerSelectionJoueur; // Bouton pour lancer la sélection des joueurs
     @FXML
-    private Button retourSelectionJoueur;
+    private Button retourSelectionJoueur; // Bouton pour retourner à la scène précédente
     @FXML
-    private TextField textFieldJ1;
+    private TextField textFieldJ1; // Champ de texte pour le pseudo du joueur 1
     @FXML
-    private TextField textFieldJ2;
+    private TextField textFieldJ2; // Champ de texte pour le pseudo du joueur 2
 
+    /**
+     * Valide les pseudonymes des joueurs et bascule vers la scène du jeu.
+     */
     @FXML
     private void suivant() {
         String pseudoJ1 = textFieldJ1.getText();
@@ -57,6 +66,9 @@ public class ControlleurSelectionJoueur {
         }
     }
 
+    /**
+     * Retourne à la scène d'accueil.
+     */
     @FXML
     private void retour() {
         Main.activerScene('a');
